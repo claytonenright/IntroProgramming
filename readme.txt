@@ -1,0 +1,1 @@
+This is the repository for Alan Labouseur's Intro to Programming Class, Fall 2014.
