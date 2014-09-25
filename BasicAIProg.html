@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>
+         AI
+      </title>
+      <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+      <script type="text/javascript">             
+         function btnGo_click() {
+            var userInput = document.getElementById("txtCommand").value;
+            var response = "";
+            
+            //alert(userInput.value);
+            if (userInput === 'Hello') {
+               response = "How are you?";
+            } else if (userInput === 'I am well') {
+               response = "Are you sure?";
+              } else if (userInput === "I told you I'm fine") {
+                  response = "Okay, don't get defensive.";
+                } else {response = "Follow the instructions above ^^^";}
+                
+            document.getElementById("taMain").value = response
+         }
+      </script>
+   </head>
+   <body>
+      <h3>
+      Enter: "Hello", "I am well", or "I told you I'm fine"
+      </h3>
+       <br>
+       Q: <input type="text" 
+                 id = "txtCommand"
+                 name="txtCommand">
+
+          <input type="button"
+                 value="Go" 
+                 onclick="btnGo_click();"/>
+       
+       <br>
+
+       A: <textarea rows="5" cols="20" id="taMain"></textarea>
+       
+
+              
+   </body>
+</html>
