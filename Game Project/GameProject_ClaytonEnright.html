@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>
+         Clayton's Game
+      </title>
+      <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+      <script type="text/javascript">
+         var playerLocation = 0;
+         var counter = 0;
+         var visited1 = false;
+         var visited2 = false;
+         var visited3 = false;
+         var visited4 = false;
+         
+         function addScore(points) {
+            var score = document.getElementById("scoreBox");
+            counter = counter + points;
+            score.value = counter;
+         }
+         
+         function hasVisited1() {
+            if (! visited1) {
+               addScore(5);
+               visited1 = true;
+            }
+         }
+         
+         function hasVisited2() {
+            if (! visited2) {
+               addScore(5);
+               visited2 = true;
+            }
+         }
+         
+         function hasVisited3() {
+            if (! visited3) {
+               addScore(5);
+               visited3 = true;
+            }
+         }
+         
+         function hasVisited4() {
+            if (! visited4) {
+               addScore(5);
+               visited4 = true;
+            }
+         }
+         
+         function dispMsg(msg) {
+            // document.getElementById("taMain").value += "\n" + msg;
+            document.getElementById("taMain").value = msg + "\n\n" + document.getElementById("taMain").value;
+         }
+         
+         
+         
+         function checkLocation() {
+            if (playerLocation === 0) {
+               dispMsg("Field.");
+            } else if (playerLocation === 1) {
+                 dispMsg("A range of mountains looms in the distance. You feel a soft breeze.");
+                 hasVisited1();
+              } else if (playerLocation === 2) {
+                   dispMsg("You approach the edge of a cliff. You can't tell how far the drop is and you hear the wind whistling in the canyon.");
+                   hasVisited2();
+                } else if (playerLocation === 3) {
+                     dispMsg("A large river blocks your way. There is an ancient tree nearby.");
+                     hasVisited3();
+                  } else if (playerLocation === 4) {
+                       dispMsg("You've found an old cottage, the door seems to be open.");
+                       hasVisited4();
+                    } else {dispMsg("Huh.")}
+         }
+         
+         function moveNorth() {
+            if (playerLocation === 3) {
+               playerLocation = 0;
+            } else if (playerLocation === 0) {
+                 playerLocation = 1;
+              } else {dispMsg("You can't go there.");}
+            
+            checkLocation();
+         }
+         
+         function moveSouth() {
+            if (playerLocation === 1) {
+               playerLocation = 0;
+            } else if (playerLocation === 0) {
+                 playerLocation = 3;
+              } else {dispMsg("You can't go there.");}
+            
+            checkLocation();
+         }
+         
+         function moveWest() {
+            if (playerLocation === 4) {
+               playerLocation = 0;
+            } else if (playerLocation === 0) {
+                 playerLocation = 2;
+              } else {dispMsg("You can't go there.");}
+            
+            checkLocation();
+         }
+         
+         function moveEast() {
+            if (playerLocation === 2) {
+               playerLocation = 0;
+            } else if (playerLocation === 0) {
+                 playerLocation = 4;
+              } else {dispMsg("You can't go there, yet...");}
+            
+            checkLocation();
+         }
+         
+         
+      </script>
+      <style>
+         h1{text-align: center;
+                 color: red;  }
+         h3 {text-align: center;}
+      </style>
+   </head>
+   <body>
+      <h1>
+         Game Title (Working)
+      </h1>
+      
+      <h3>
+         <a href="mailto:clayton.enright1@marist.edu">Email Clayton</a>
+      </h3>
+      
+      Progress Log:
+      <br>
+      <textarea rows="8" cols="40" id="taMain">Hello! Welcome to the world! You're standing in the middle of a large field.
+      </textarea>
+      
+      <br>
+
+      <input type="button"
+             value="North" 
+             onclick="moveNorth();"/>
+          
+      <input type="button"
+             value="South" 
+             onclick="moveSouth();"/>
+          
+      <input type="button"
+             value="East" 
+             onclick="moveEast();"/>
+          
+      <input type="button"
+             value="West" 
+             onclick="moveWest();"/>
+       
+       <br>
+       <br>        
+       <br>
+       
+       Score:
+       <br>
+       <textarea rows="1" cols="2" id="scoreBox">0</textarea>
+              
+   </body>
+</html>
