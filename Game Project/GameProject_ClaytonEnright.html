@@ -1,10 +1,4 @@
 <!DOCTYPE html>
-<!--
-   Clayton Enright
-   10/2/14
-   Intro to Programming
-   Project 2 (Game v0.2)
-  -->
 <html>
    <head>
       <title>
@@ -18,7 +12,14 @@
          var visited2 = false;
          var visited3 = false;
          var visited4 = false;
+         var visited5 = false;
          
+         function init() {
+            checkLocation();
+         }
+      
+      //Score Keeping
+      
          function addScore(points) {
             var score = document.getElementById("scoreBox");
             counter = counter + points;
@@ -53,37 +54,71 @@
             }
          }
          
+         function hasVisited5() {
+            if (! visited5) {
+               addScore(5);
+               visited5 = true;
+            }
+         }
+         
+         function checkLocation() {
+            var desc="";
+            switch(playerLocation) {
+               case 0: desc = "You're standing in the middle of a large field.";
+                     break;
+               case 1: desc = "A range of mountains looms in the distance. You feel a soft breeze.";
+                     hasVisited1();
+                     break;
+               case 2: desc = "You approach the edge of a cliff. You can't tell how far the drop is and you hear the wind whistling in the canyon.";
+                     hasVisited2();
+                     break;
+               case 3: desc = "A large river blocks your way. There is an ancient tree nearby.";
+                     hasVisited3();
+                     break;
+               case 4: desc = "You've found an old cottage, the door to the east seems to be open.";
+                     hasVisited4();
+                     break;
+               case 5: desc = "This is the sixth room! Good for you!";
+                     hasVisited5();
+                     break;
+               default: desc = "You can't go there.";
+            }  
+            dispMsg(desc);
+         }
+         
+      //Message Functions
+      
          function dispMsg(msg) {
-            // document.getElementById("taMain").value += "\n" + msg;
             document.getElementById("taMain").value = msg + "\n\n" + document.getElementById("taMain").value;
          }
          
-         
-         
-         function checkLocation() {
-            if (playerLocation === 0) {
-               dispMsg("Field.");
-            } else if (playerLocation === 1) {
-                 dispMsg("A range of mountains looms in the distance. You feel a soft breeze.");
-                 hasVisited1();
-              } else if (playerLocation === 2) {
-                   dispMsg("You approach the edge of a cliff. You can't tell how far the drop is and you hear the wind whistling in the canyon.");
-                   hasVisited2();
-                } else if (playerLocation === 3) {
-                     dispMsg("A large river blocks your way. There is an ancient tree nearby.");
-                     hasVisited3();
-                  } else if (playerLocation === 4) {
-                       dispMsg("You've found an old cottage, the door seems to be open.");
-                       hasVisited4();
-                    } else {dispMsg("Huh.")}
+         function errorLoc() {
+            dispMsg("You can't go there!");
          }
          
+      //Movement Functions   
+         
+         function btnGo_click() {
+            var txtInput = document.getElementById("txtCommand");
+            
+            if (txtInput.value === "n" || txtInput.value === "N") {
+               moveNorth();
+            } else if (txtInput.value === "s" || txtInput.value === "S") {
+                  moveSouth();
+              } else if (txtInput.value === "e" || txtInput.value === "E") {
+                   moveEast();
+                } else if (txtInput.value === "w" || txtInput.value === "W") {
+                     moveWest();
+                  } else {dispMsg("Command not recognized. Type n or N, s or S, e or E, w or W")}
+            
+         }
+                           
          function moveNorth() {
             if (playerLocation === 3) {
                playerLocation = 0;
             } else if (playerLocation === 0) {
                  playerLocation = 1;
-              } else {dispMsg("You can't go there.");}
+              } else {errorLoc();}
             
             checkLocation();
          }
@@ -93,7 +128,7 @@
                playerLocation = 0;
             } else if (playerLocation === 0) {
                  playerLocation = 3;
-              } else {dispMsg("You can't go there.");}
+              } else {errorLoc();}
             
             checkLocation();
          }
@@ -103,7 +138,9 @@
                playerLocation = 0;
             } else if (playerLocation === 0) {
                  playerLocation = 2;
-              } else {dispMsg("You can't go there.");}
+              } else if (playerLocation === 5) {
+                  playerLocation = 4;
+                } else {errorLoc();}
             
             checkLocation();
          }
@@ -113,7 +150,9 @@
                playerLocation = 0;
             } else if (playerLocation === 0) {
                  playerLocation = 4;
-              } else {dispMsg("You can't go there, yet...");}
+              } else if (playerLocation === 4) {
+                  playerLocation = 5;
+                } else {errorLoc();}
             
             checkLocation();
          }
@@ -126,7 +165,7 @@
          h3 {text-align: center;}
       </style>
    </head>
-   <body>
+   <body onload="init();">
       <h1>
          Game Title (Working)
       </h1>
@@ -137,9 +176,17 @@
       
       Progress Log:
       <br>
-      <textarea rows="8" cols="40" id="taMain">Hello! Welcome to the world! You're standing in the middle of a large field.
-      </textarea>
+      <textarea rows="8" cols="40" id="taMain"></textarea>
       
+      <br>
+      Command:
+      <input type="text"
+             id="txtCommand"
+             name="txtCommand"/>
+      
+      <input type="button"
+             value="Go"
+             onclick="btnGo_click();"/>
       <br>
 
       <input type="button"
