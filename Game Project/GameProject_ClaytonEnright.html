@@ -8,6 +8,7 @@
       <script type="text/javascript">
          var playerLocation = 0;
          var counter = 0;
+         var visited0 = false;
          var visited1 = false;
          var visited2 = false;
          var visited3 = false;
@@ -26,7 +27,16 @@
             score.value = counter;
          }
          
+         function hasVisited0() {
+            dispMsg("You're standing in the middle of a large field.");
+            if (! visited0) {
+               addScore(5);
+               visited0 = true;
+            }
+         }
+         
          function hasVisited1() {
+            dispMsg("A range of mountains looms in the distance. You feel a soft breeze.");
             if (! visited1) {
                addScore(5);
                visited1 = true;
@@ -34,6 +44,7 @@
          }
          
          function hasVisited2() {
+            dispMsg("You approach the edge of a cliff. You can't tell how far the drop is and you hear the wind whistling in the canyon.");
             if (! visited2) {
                addScore(5);
                visited2 = true;
@@ -41,6 +52,7 @@
          }
          
          function hasVisited3() {
+            dispMsg("A large river blocks your way. There is an ancient tree nearby.");
             if (! visited3) {
                addScore(5);
                visited3 = true;
@@ -48,6 +60,7 @@
          }
          
          function hasVisited4() {
+            dispMsg("You've found an old cottage, the door to the east seems to be open.");
             if (! visited4) {
                addScore(5);
                visited4 = true;
@@ -55,6 +68,7 @@
          }
          
          function hasVisited5() {
+            dispMsg("This is the sixth room! Good for you!");
             if (! visited5) {
                addScore(5);
                visited5 = true;
@@ -62,28 +76,21 @@
          }
          
          function checkLocation() {
-            var desc="";
             switch(playerLocation) {
-               case 0: desc = "You're standing in the middle of a large field.";
+               case 0: hasVisited0();
                      break;
-               case 1: desc = "A range of mountains looms in the distance. You feel a soft breeze.";
-                     hasVisited1();
+               case 1: hasVisited1();
                      break;
-               case 2: desc = "You approach the edge of a cliff. You can't tell how far the drop is and you hear the wind whistling in the canyon.";
-                     hasVisited2();
+               case 2: hasVisited2();
                      break;
-               case 3: desc = "A large river blocks your way. There is an ancient tree nearby.";
-                     hasVisited3();
+               case 3: hasVisited3();
                      break;
-               case 4: desc = "You've found an old cottage, the door to the east seems to be open.";
-                     hasVisited4();
+               case 4: hasVisited4();
                      break;
-               case 5: desc = "This is the sixth room! Good for you!";
-                     hasVisited5();
+               case 5: hasVisited5();
                      break;
-               default: desc = "You can't go there.";
+               default: errorLoc();
             }  
-            dispMsg(desc);
          }
          
       //Message Functions
