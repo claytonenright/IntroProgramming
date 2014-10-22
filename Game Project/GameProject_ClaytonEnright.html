@@ -27,7 +27,7 @@
             score.value = counter;
          }
          
-         function hasVisited0() {
+         function visit0() {
             dispMsg("You're standing in the middle of a large field.");
             if (! visited0) {
                addScore(5);
@@ -35,7 +35,7 @@
             }
          }
          
-         function hasVisited1() {
+         function visit1() {
             dispMsg("A range of mountains looms in the distance. You feel a soft breeze.");
             if (! visited1) {
                addScore(5);
@@ -43,7 +43,7 @@
             }
          }
          
-         function hasVisited2() {
+         function visit2() {
             dispMsg("You approach the edge of a cliff. You can't tell how far the drop is and you hear the wind whistling in the canyon.");
             if (! visited2) {
                addScore(5);
@@ -51,7 +51,7 @@
             }
          }
          
-         function hasVisited3() {
+         function visit3() {
             dispMsg("A large river blocks your way. There is an ancient tree nearby.");
             if (! visited3) {
                addScore(5);
@@ -59,7 +59,7 @@
             }
          }
          
-         function hasVisited4() {
+         function visit4() {
             dispMsg("You've found an old cottage, the door to the east seems to be open.");
             if (! visited4) {
                addScore(5);
@@ -67,7 +67,7 @@
             }
          }
          
-         function hasVisited5() {
+         function visit5() {
             dispMsg("This is the sixth room! Good for you!");
             if (! visited5) {
                addScore(5);
@@ -77,17 +77,17 @@
          
          function checkLocation() {
             switch(playerLocation) {
-               case 0: hasVisited0();
+               case 0: visit0();
                      break;
-               case 1: hasVisited1();
+               case 1: visit1();
                      break;
-               case 2: hasVisited2();
+               case 2: visit2();
                      break;
-               case 3: hasVisited3();
+               case 3: visit3();
                      break;
-               case 4: hasVisited4();
+               case 4: visit4();
                      break;
-               case 5: hasVisited5();
+               case 5: visit5();
                      break;
                default: errorLoc();
             }  
