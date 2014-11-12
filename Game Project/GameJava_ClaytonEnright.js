@@ -1,74 +1,23 @@
    // Global Variables
-
 var playerLocation = 0;
 var counter = 0;
-var visited0 = false;
-var visited1 = false;
-var visited2 = false;
-var visited3 = false;
-var visited4 = false;
-var visited5 = false;
-         
+var hasBacon = false;
+var hasHam = false;
+
+   // Load Function         
 function init() {
+   dispMsg("Hello and welcome to Pork! The Ham-Based parody of Zork!");
    checkLocation();
 }
       
-   //Score Keeping
-      
+   // Score Keeping      
 function addScore(points) {
    var score = document.getElementById("scoreBox");
    counter = counter + points;
    score.value = counter;
 }
-         
-function visit0() {
-   dispMsg("You're standing in the middle of a large field.");
-   if (! visited0) {
-      addScore(5);
-      visited0 = true;
-   }
-}
-         
-function visit1() {
-   dispMsg("A range of mountains looms in the distance. You feel a soft breeze.");
-   if (! visited1) {
-      addScore(5);
-      visited1 = true;
-   }
-}
-         
-function visit2() {
-   dispMsg("You approach the edge of a cliff. You can't tell how far the drop is and you hear the wind whistling in the canyon.");
-   if (! visited2) {
-      addScore(5);
-      visited2 = true;
-   }
-}
-         
-function visit3() {
-   dispMsg("A large river blocks your way. There is an ancient tree nearby.");
-   if (! visited3) {
-      addScore(5);
-      visited3 = true;
-   }
-}
-         
-function visit4() {
-   dispMsg("You've found an old cottage, the door to the east seems to be open.");
-   if (! visited4) {
-      addScore(5);
-      visited4 = true;
-   }
-}
-         
-function visit5() {
-   dispMsg("This is the sixth room! Good for you!");
-   if (! visited5) {
-      addScore(5);
-      visited5 = true;
-   }
-}
-         
+   
+   //  Location Maintenance Functions   
 function checkLocation() {
    switch(playerLocation) {
       case 0: visit0();   break;
@@ -77,12 +26,71 @@ function checkLocation() {
       case 3: visit3();   break;
       case 4: visit4();   break;
       case 5: visit5();   break;
+      case 6: visit6();   break;
+      case 7: visit7();   break;
+      case 8: visit8();   break;
+      case 9: visit9();   break;
       default: errorLoc();
    }  
 }
+
+function availButton() {
+   switch(playerLocation) {
+      case 0: document.getElementById('north').style.visibility = 'visible';
+              document.getElementById('south').style.visibility = 'visible';
+              document.getElementById('east').style.visibility = 'visible';
+              document.getElementById('west').style.visibility = 'visible';
+         break;
+      case 1: document.getElementById('north').style.visibility = 'hidden';
+              document.getElementById('south').style.visibility = 'visible';
+              document.getElementById('east').style.visibility = 'visible';
+              document.getElementById('west').style.visibility = 'hidden';
+         break;
+      case 2: document.getElementById('north').style.visibility = 'hidden';
+              document.getElementById('south').style.visibility = 'hidden';
+              document.getElementById('east').style.visibility = 'visible';
+              document.getElementById('west').style.visibility = 'hidden';
+         break;
+      case 3: document.getElementById('north').style.visibility = 'visible';
+              document.getElementById('south').style.visibility = 'hidden';
+              document.getElementById('east').style.visibility = 'hidden';
+              document.getElementById('west').style.visibility = 'visible';   
+         break;
+      case 4: document.getElementById('north').style.visibility = 'hidden';
+              document.getElementById('south').style.visibility = 'hidden';
+              document.getElementById('east').style.visibility = 'visible';
+              document.getElementById('west').style.visibility = 'visible';   
+         break;
+      case 5: document.getElementById('north').style.visibility = 'hidden';
+              document.getElementById('south').style.visibility = 'visible';
+              document.getElementById('east').style.visibility = 'hidden';
+              document.getElementById('west').style.visibility = 'visible';   
+         break;
+      case 6: document.getElementById('north').style.visibility = 'visible';
+              document.getElementById('south').style.visibility = 'hidden';
+              document.getElementById('east').style.visibility = 'visible';
+              document.getElementById('west').style.visibility = 'hidden';   
+         break;
+      case 7: document.getElementById('north').style.visibility = 'hidden';
+              document.getElementById('south').style.visibility = 'hidden';
+              document.getElementById('east').style.visibility = 'hidden';
+              document.getElementById('west').style.visibility = 'visible';   
+         break;
+      case 8: document.getElementById('north').style.visibility = 'hidden';
+              document.getElementById('south').style.visibility = 'hidden';
+              document.getElementById('east').style.visibility = 'visible';
+              document.getElementById('west').style.visibility = 'hidden';   
+         break;
+      case 9: document.getElementById('north').style.visibility = 'hidden';
+              document.getElementById('south').style.visibility = 'hidden';
+              document.getElementById('east').style.visibility = 'hidden';
+              document.getElementById('west').style.visibility = 'visible';   
+         break;
+      default: errorLoc();
+   }
+}
          
-   //Message Functions
-      
+   //Message Functions   
 function dispMsg(msg) {
    document.getElementById("taMain").value = msg + "\n\n" + document.getElementById("taMain").value;
 }
@@ -90,21 +98,32 @@ function dispMsg(msg) {
 function errorLoc() {
    dispMsg("You can't go there!");
 }
+
+function errorInput() {
+   dispMsg("I don't understand that command. Type \'help\' for assistance.")
+}
+
+function txtCommand_keyPress(keyboardEvent) {
+   if (keyboardEvent.which === 13) { //ENTER key
+      btnGo_click();
+   }
+}
          
-   //Movement Functions   
-         
+   //Movement Functions          
 function btnGo_click() {
    var txtInput = document.getElementById("txtCommand");
             
    if (txtInput.value === "n" || txtInput.value === "N") {
       moveNorth();
    } else if (txtInput.value === "s" || txtInput.value === "S") {
-         moveSouth();
+        moveSouth();
      } else if (txtInput.value === "e" || txtInput.value === "E") {
-            moveEast();
+          moveEast();
        } else if (txtInput.value === "w" || txtInput.value === "W") {
-               moveWest();
-         } else {dispMsg("Command not recognized. Type n or N, s or S, e or E, w or W")}
+            moveWest();
+         } else if (txtInput.value === "help") {
+              dispMsg("Type in \'N, S, E, or W\' to move. Type in \'take\' to acquire an item.");
+           } else {errorInput();}
             
 }
                            
@@ -113,7 +132,9 @@ function moveNorth() {
       playerLocation = 0;
    } else if (playerLocation === 0) {
         playerLocation = 1;
-     } else {errorLoc();}
+     } else if (playerLocation === 6) {
+          playerLocation = 5;
+       } else {errorLoc();}
             
    checkLocation();
 }
@@ -123,7 +144,9 @@ function moveSouth() {
       playerLocation = 0;
    } else if (playerLocation === 0) {
         playerLocation = 3;
-     } else {errorLoc();}
+     } else if (playerLocation === 5) {
+          playerLocation = 6;
+       } else {errorLoc();}
             
    checkLocation();
 }
@@ -135,7 +158,13 @@ function moveWest() {
         playerLocation = 2;
      } else if (playerLocation === 5) {
           playerLocation = 4;
-       } else {errorLoc();}
+       } else if (playerLocation === 3) {
+            playerLocation = 8;
+         } else if (playerLocation === 9) {
+              playerLocation = 6;
+           } else if (playerLocation === 7) {
+                playerLocation = 1;
+             } else {errorLoc();}
    
    checkLocation();
 }
@@ -147,7 +176,14 @@ function moveEast() {
         playerLocation = 4;
      } else if (playerLocation === 4) {
           playerLocation = 5;
-       } else {errorLoc();}
+       } else if (playerLocation === 1) {
+            playerLocation = 7;
+         } else if (playerLocation === 8) {
+              playerLocation = 3;
+           } else if (playerLocation === 6) {
+                playerLocation = 9;
+             }
+       else {errorLoc();}
    
     checkLocation();
 }
