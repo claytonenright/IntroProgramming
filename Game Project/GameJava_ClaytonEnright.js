@@ -17,7 +17,7 @@ function addScore(points) {
    score.value = counter;
 }
    
-   //  Location Maintenance Functions   
+   //  Location Specific Functions   
 function checkLocation() {
    switch(playerLocation) {
       case 0: visit0();   break;
@@ -90,9 +90,13 @@ function availButton() {
    }
 }
          
-   //Message Functions   
+   // Message Functions   
 function dispMsg(msg) {
    document.getElementById("taMain").value = msg + "\n\n" + document.getElementById("taMain").value;
+}
+
+function helpMsg() {
+   dispMsg("Type in \'n, s, e, or w\' to move. Type in \'take\' to acquire an item. Type in \'inv\' to check your inventory.");
 }
          
 function errorLoc() {
@@ -109,7 +113,7 @@ function txtCommand_keyPress(keyboardEvent) {
    }
 }
          
-   //Movement Functions          
+   // Player Actions         
 function btnGo_click() {
    var txtInput = document.getElementById("txtCommand");
             
@@ -122,8 +126,12 @@ function btnGo_click() {
        } else if (txtInput.value === "w" || txtInput.value === "W") {
             moveWest();
          } else if (txtInput.value === "help") {
-              dispMsg("Type in \'N, S, E, or W\' to move. Type in \'take\' to acquire an item.");
-           } else {errorInput();}
+              helpMsg();
+           } else if (txtInput.value === "take") {
+                takeItem();
+             } else if (txtInput.value === "inv") {
+                  checkInv();
+               } else {errorInput();}
             
 }
                            
@@ -152,21 +160,26 @@ function moveSouth() {
 }
          
 function moveWest() {
-   if (playerLocation === 4) {
-      playerLocation = 0;
-   } else if (playerLocation === 0) {
-        playerLocation = 2;
-     } else if (playerLocation === 5) {
-          playerLocation = 4;
-       } else if (playerLocation === 3) {
-            playerLocation = 8;
-         } else if (playerLocation === 9) {
-              playerLocation = 6;
-           } else if (playerLocation === 7) {
-                playerLocation = 1;
-             } else {errorLoc();}
-   
-   checkLocation();
+   switch (playerLocation) {
+   case 0: playerLocation = 2; 
+           checkLocation(); 
+              break;
+   case 3: playerLocation = 8; 
+           checkLocation(); 
+              break;
+   case 4: playerLocation = 0; 
+           checkLocation(); 
+              break;
+   case 5: playerLocation = 4; 
+           checkLocation(); 
+              break;
+   case 7: playerLocation = 1; 
+           checkLocation(); 
+              break;
+   case 9: playerLocation = 6; 
+           checkLocation();
+              break;
+   }
 }
          
 function moveEast() {
@@ -186,4 +199,20 @@ function moveEast() {
        else {errorLoc();}
    
     checkLocation();
+}
+
+function takeItem() {
+   if (playerLocation === 7 && !hasBacon) {
+      hasBacon = true;
+      dispMsg("You put some of the bacon in your pockets.");
+      addScore(5);
+   } else if (playerLocation === 8 && !hasHam) {
+        hasHam = true;
+        dispMsg("You pull off a hearty piece of the honey ham.");
+        addScore(5);
+     } else {dispMsg("There are no items here!");}
+}
+
+function checkInv() {
+   dispMsg("Bacon = " + hasBacon + ", " + "Ham = " + hasHam);
 }
