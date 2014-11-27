@@ -1,8 +1,11 @@
    // Global Variables
 var playerLocation = 0;
 var counter = 0;
+var inventory = [];
 var hasBacon = false;
 var hasHam = false;
+var hasSilverware = false;
+var hasPig = false;
 
    // Load Function         
 function init() {
@@ -16,9 +19,13 @@ function addScore(points) {
    counter = counter + points;
    score.value = counter;
 }
+
+
    
    //  Location Specific Functions   
 function checkLocation() {
+   dispMsg(locales[playerLocation].desc);
+   availButton();
    switch(playerLocation) {
       case 0: visit0();   break;
       case 1: visit1();   break;
@@ -31,8 +38,10 @@ function checkLocation() {
       case 8: visit8();   break;
       case 9: visit9();   break;
       default: errorLoc();
-   }  
+   }
+
 }
+
 
 function availButton() {
    switch(playerLocation) {
@@ -96,7 +105,7 @@ function dispMsg(msg) {
 }
 
 function helpMsg() {
-   dispMsg("Type in \'n, s, e, or w\' to move. Type in \'take\' to acquire an item. Type in \'inv\' to check your inventory.");
+   dispMsg("Use the buttons below! Or, type in \'n, s, e, or w\' to move. Type in \'take\' to acquire an item. Type in \'inv\' to check your inventory.");
 }
          
 function errorLoc() {
@@ -201,18 +210,60 @@ function moveEast() {
     checkLocation();
 }
 
+   // Item Functions
+function Item() {
+   this.id = "";
+   this.name = "";
+   this.desc = "";
+   this.toString = function() {return "[" + this.id + ", " + this.name + ", " + "\"" + this.desc + "\"" + "]";}
+}
+
+var Bacon = new Item();
+Bacon.id = 1;
+Bacon.name = "Bacon";
+Bacon.desc = "A large portion of bacon.";
+
+var Ham = new Item();
+Ham.id = 2;
+Ham.name = "Ham";
+Ham.desc = "A chunk of ham.";
+
+var Pig = new Item();
+Pig.id = 3;
+Pig.name = "Pig";
+Pig.desc = "A friendly swine.";
+
+var Silverware = new Item();
+Silverware.id = 4;
+Silverware.name = "Silverware";
+Silverware.desc = "A fork and a knife.";
+
 function takeItem() {
    if (playerLocation === 7 && !hasBacon) {
       hasBacon = true;
+      inventory.push(Bacon);
       dispMsg("You put some of the bacon in your pockets.");
       addScore(5);
    } else if (playerLocation === 8 && !hasHam) {
         hasHam = true;
+        inventory.push(Ham);
         dispMsg("You pull off a hearty piece of the honey ham.");
         addScore(5);
-     } else {dispMsg("There are no items here!");}
+     } else if (playerLocation === 2 && !hasSilverware) {
+          hasSilverware = true;
+          inventory.push(Silverware);
+          dispMsg("You put a fork and a knife in your pockets. Just in case.");
+          addScore(5);
+       } else if (playerLocation === 5 && !hasPig) {
+            hasPig = true;
+            inventory.push(Pig);
+            dispMsg("You call over to the pig and he seems to listen and follow.");
+            addScore(5);
+         } else {dispMsg("There are no items here!");}
 }
 
 function checkInv() {
-   dispMsg("Bacon = " + hasBacon + ", " + "Ham = " + hasHam);
+   for (var i = 0; i < inventory.length; i++) {
+      dispMsg(inventory[i].name + ", " + inventory[i].desc);
+   }
 }

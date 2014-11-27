@@ -1,3 +1,8 @@
+<!--
+Clayton Enright
+Project 5
+12/1/14
+-->
 <!DOCTYPE html>
 <html>
    <head>
@@ -33,6 +38,7 @@
       <br>
       <br>
       
+      
       Command:     
       <input type="text"
              id="txtCommand"
@@ -64,6 +70,24 @@
              value="West" 
              id="west"
              onclick="moveWest();"/>
+      
+      <br>
+      <br>
+      
+      <input type="button"
+             value="Take" 
+             id="take"
+             onclick="takeItem();"/>
+      
+      <input type="button"
+             value="Inventory" 
+             id="inv"
+             onclick="checkInv();"/>
+             
+      <input type="button"
+             value="Help?"
+             id="help"
+             onclick="helpMsg();"
        
        <br>
        <br>        
@@ -74,7 +98,7 @@
        <textarea rows="1" cols="2" id="scoreBox">0</textarea>
        <br>
        
-       <img src="C:\Users\Clayton\Documents\GitHub\IntroProgramming\Game Project\GameMap.png" 
+       <img src="GameMap.png"
             alt="Map" 
             height="432" width="768">
               
