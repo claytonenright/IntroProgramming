@@ -108,7 +108,7 @@ var locale2 = new Locale();
 locale2.id = 2;
 locale2.name = "Cliff";
 locale2.desc = "You approach the edge of a cliff. You can't tell how far the drop is and you hear the wind whistling in the canyon. There appears to be some silverware near the edge.";
-locale2.item = false;
+locale2.item = "Silveware";
 
 
 var locale3 = new Locale();
@@ -129,7 +129,7 @@ var locale5 = new Locale();
 locale5.id = 5;
 locale5.name = "Cottage";
 locale5.desc = "Inside the cottage you find some scattered furniture and bacon grease everywhere. A scared pig is hiding in a corner. There is a hole in the southern wall.";
-locale5.item = false;
+locale5.item = "Pig";
 
 
 var locale6 = new Locale();

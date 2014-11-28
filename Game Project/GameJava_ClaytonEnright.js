@@ -39,7 +39,7 @@ function checkLocation() {
       case 9: visit9();   break;
       default: errorLoc();
    }
-
+   
 }
 
 
@@ -238,6 +238,7 @@ Silverware.id = 4;
 Silverware.name = "Silverware";
 Silverware.desc = "A fork and a knife.";
 
+
 function takeItem() {
    if (playerLocation === 7 && !hasBacon) {
       hasBacon = true;
@@ -264,6 +265,6 @@ function takeItem() {
 
 function checkInv() {
    for (var i = 0; i < inventory.length; i++) {
-      dispMsg(inventory[i].name + ", " + inventory[i].desc);
+      dispMsg("[" + inventory[i].name + ", " + inventory[i].desc + "]");
    }
 }
