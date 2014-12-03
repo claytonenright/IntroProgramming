@@ -36,7 +36,7 @@ var hideBtnArray = [ // N  S  E  W
 function init() {
    dispMsg("Hello and welcome to Pork! The Ham-Based parody of Zork!\nCan you prepare the feast?!");
    checkLocation();
-   document.getElementById("obama").style.visibility = "hidden";
+   document.getElementById("baconpic").style.visibility = "hidden";
 }
       
    // Score Keeping      
@@ -48,6 +48,11 @@ function addScore(points) {
    
    //  Location Specific Functions   
 function checkLocation() {
+   if (playerLocation === 9 && inventory.length === 4) {
+      document.getElementById("baconpic").style.visibility = "visible";
+      locale9.desc = "Here you find a picnic table with a lovely table cloth...\nCongratulations! You win! Now dig in!";
+      addScore(35);
+   }
    dispMsg(locales[playerLocation].desc);
    if (locales[playerLocation].visit === false) {
       addScore(5);
@@ -57,41 +62,34 @@ function checkLocation() {
    canGoSouth();
    canGoEast();
    canGoWest();
-   if (playerLocation === 9 && inventory.length === 4) {
-      document.getElementById("obama").style.visibility = "visible";
-      dispMsg("You have all the fixings for a feast! Dig in! The pig doesn't look too happy...");
-      addScore(35);
-   } else if (playerLocation === 9 && inventory.length < 4) {
-        dispMsg("Come back here when you have found all the materials for a feast!");
-     }
 }
 
 function canGoNorth() {
-   var btnNorth = document.getElementById('north').style
+   var btnNorth = document.getElementById('north');
    if (hideBtnArray[playerLocation][0] === 1) {
-      btnNorth.visibility = 'visible';
-   } else {btnNorth.visibility = 'hidden';}
+      btnNorth.disabled = false;
+   } else {btnNorth.disabled = true;}
 }
 
 function canGoSouth() {
-   var btnSouth = document.getElementById('south').style
+   var btnSouth = document.getElementById('south');
    if (hideBtnArray[playerLocation][1] === 1) {
-      btnSouth.visibility = 'visible';
-   } else {btnSouth.visibility = 'hidden';}
+      btnSouth.disabled = false;
+   } else {btnSouth.disabled = true;}
 }
 
 function canGoEast() {
-   var btnEast = document.getElementById('east').style
+   var btnEast = document.getElementById('east');
    if (hideBtnArray[playerLocation][2] === 1) {
-      btnEast.visibility = 'visible';
-   } else {btnEast.visibility = 'hidden';}
+      btnEast.disabled = false;
+   } else {btnEast.disabled = true;}
 }
 
 function canGoWest() {
-   var btnWest = document.getElementById('west').style
+   var btnWest = document.getElementById('west');
    if (hideBtnArray[playerLocation][3] === 1) {
-      btnWest.visibility = 'visible';
-   } else {btnWest.visibility = 'hidden';}
+      btnWest.disabled = false;
+   } else {btnWest.disabled = true;}
 }
          
    // Message Functions   

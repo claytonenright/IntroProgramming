@@ -104,7 +104,7 @@ locale8.visit = false;
 var locale9 = new Locale();
 locale9.id = 9;
 locale9.name = "End";
-locale9.desc = "Here you find a picnic table with a lovely table cloth...";
+locale9.desc = "Here you find a picnic table with a lovely table cloth...come back when you can have a feast.";
 locale9.item = null;
 locale9.visit = false;
 

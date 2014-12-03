@@ -1,9 +1,8 @@
+<!DOCTYPE html>
 <!--
 Clayton Enright
-Project 5
-12/1/14
+Final Project
 -->
-<!DOCTYPE html>
 <html>
    <head>
       <title>
@@ -14,15 +13,17 @@ Project 5
       <script type="text/javascript" src="itemsandlocations.js"></script>
       <style>
          h1 {text-align: center;
-                  color: green; }
+              font-size: 48px;
+                  color: green;  }
                   
          h2 {text-align: center;
-                  color: green }
+                  color: green;  }  
                   
-         h3 {text-align: center;}
+         h3 {text-align: center;
+                  color: green;  }
          
-         p  {font-size: 10px;
-             text-align: center;}
+         .footer  {font-size: 10px;
+                   text-align: center;}
       </style>
    </head>
    <body onload="init();">
@@ -33,86 +34,40 @@ Project 5
       
       <h3>By: Clayton Enright</h3>
       
-      <h3><a href="mailto:clayton.enright1@marist.edu">Email Clayton</a></h3>
+      <p>Progress Log:</p>
       
+      <textarea rows="18" cols="65" id="taMain" readonly="readonly"></textarea>
+      
+      <img src="Bacon.jpeg" alt="Bacon" id="baconpic" height="216" width="320">
       <br>
       
-      <img src="GameMap.png"
-            alt="Map"
-            align="right"
-            height="432" width="700">
-      
-      Progress Log:
-      <br>
-      <textarea rows=18" cols="65" id="taMain" readonly="readonly"></textarea>
-      <img src="Bacon.jpeg"
-           id="obama"
-           height="216" width="320">
-      
-      <br>
-      
-      Command:     
-      <input type="text"
-             id="txtCommand"
-             name="txtCommand"
-             onkeypress="txtCommand_keyPress(event);"/>
-      
-      <input type="button"
-             value="Go"
-             onclick="btnGo_click();"/>
-      <br>
-      <br>
+      Command:
+      <input type="text" id="txtCommand" name="txtCommand" onkeypress="txtCommand_keyPress(event);"/>
+      <input type="button" value="Go" onclick="btnGo_click();"/>
+      <br><br>
 
-      <input type="button"
-             value="North"
-             id="north"
-             onclick="moveNorth();"/>
-          
-      <input type="button"
-             value="South"
-             id="south"
-             onclick="moveSouth();"/>
-          
-      <input type="button"
-             value="East"
-             id="east"
-             onclick="moveEast();"/>
-          
-      <input type="button"
-             value="West" 
-             id="west"
-             onclick="moveWest();"/>
+      <input type="button" value="North" id="north" onclick="moveNorth();"/> 
+      <input type="button" value="South" id="south" onclick="moveSouth();"/>
+      <input type="button" value="East" id="east" onclick="moveEast();"/>
+      <input type="button" value="West" id="west" onclick="moveWest();"/>
+      <br><br>
       
+      <input type="button" value="Take" id="take" onclick="takeItem();"/>
+      <input type="button" value="Inventory" id="inv" onclick="checkInv();"/>
+      <input type="button" value="Help?" id="help" onclick="helpMsg();"/>
+      <br><br><br>
+       
+      Score:
       <br>
+      <textarea rows="1" cols="2" id="scoreBox">0</textarea>
       <br>
       
-      <input type="button"
-             value="Take" 
-             id="take"
-             onclick="takeItem();"/>
+      <img  src="GameMap.png" alt="Map" height="432" width="700">
+      <br><br><br>
       
-      <input type="button"
-             value="Inventory" 
-             id="inv"
-             onclick="checkInv();"/>
-             
-      <input type="button"
-             value="Help?"
-             id="help"
-             onclick="helpMsg();"
-       
-       <br>
-       <br>        
-       <br>
-       
-       Score:
-       <br>
-       <textarea rows="1" cols="2" id="scoreBox">0</textarea>
-       <br>
-       <br>
-       <br>
-       <br>
-       <p>Credit for end photo:http://1.bp.blogspot.com/_cUnRPfIAQWs/TIwDAznHcRI/AAAAAAAAAKg/VKibi-hJD14/</p>
-       <p>Made for an Intro to Programming class, not for commercial use.</p>
+      <p>Questions? <a href="mailto:clayton.enright1@marist.edu">Email Clayton</a></p>
+      
+      <p class="footer">Credit for end photo: http://upload.wikimedia.org/wikipedia/commons/3/31/Made20bacon.png</p>
+      <p class="footer">Made for an Intro to Programming class, not for commercial use.</p>
    </body>
 </html>
