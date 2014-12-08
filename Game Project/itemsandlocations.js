@@ -6,25 +6,25 @@ function Item() {
    this.toString = function() {return "[" + this.id + ", " + this.name + ", " + "\"" + this.desc + "\"" + "]";}
 }
 
-var Bacon = new Item();
-Bacon.id = 1;
-Bacon.name = "Bacon";
-Bacon.desc = "A large portion of bacon.";
+var bacon = new Item();
+bacon.id = 1;
+bacon.name = "bacon";
+bacon.desc = "A large portion of bacon.";
 
-var Ham = new Item();
-Ham.id = 2;
-Ham.name = "Ham";
-Ham.desc = "A chunk of ham.";
+var ham = new Item();
+ham.id = 2;
+ham.name = "ham";
+ham.desc = "A chunk of ham.";
 
-var Pig = new Item();
-Pig.id = 3;
-Pig.name = "Pig";
-Pig.desc = "A friendly swine.";
+var pig = new Item();
+pig.id = 3;
+pig.name = "pig";
+pig.desc = "A friendly swine.";
 
-var Silverware = new Item();
-Silverware.id = 4;
-Silverware.name = "Silverware";
-Silverware.desc = "A fork and a knife.";
+var silverware = new Item();
+silverware.id = 4;
+silverware.name = "silverware";
+silverware.desc = "A fork and a knife.";
 
 
 
@@ -56,7 +56,7 @@ var locale2 = new Locale();
 locale2.id = 2;
 locale2.name = "Cliff";
 locale2.desc = "You approach the edge of a cliff. You can't tell how far the drop is and you hear the wind whistling in the canyon. There appears to be some silverware near the edge.";
-locale2.item = Silverware;
+locale2.item = silverware;
 locale2.visit = false;
 
 var locale3 = new Locale();
@@ -77,7 +77,7 @@ var locale5 = new Locale();
 locale5.id = 5;
 locale5.name = "Cottage";
 locale5.desc = "Inside the cottage you find some scattered furniture and bacon grease everywhere. A bunch of scared pigs are squealing in a the corner. There is a hole in the southern wall.";
-locale5.item = Pig;
+locale5.item = pig;
 locale5.visit = false;
 
 var locale6 = new Locale();
@@ -91,14 +91,14 @@ var locale7 = new Locale();
 locale7.id = 7;
 locale7.name = "Bacon Plate";
 locale7.desc = "You've come across a gigantic plate of bacon. Control yourself now.";
-locale7.item = Bacon;
+locale7.item = bacon;
 locale7.visit = false;
 
 var locale8 = new Locale();
 locale8.id = 8;
 locale8.name = "Ham Plate";
 locale8.desc = "No, you are not dreaming. There is a four-foot tall hunk of honey baked ham sitting right in front of you.";
-locale8.item = Ham;
+locale8.item = ham;
 locale8.visit = false;
 
 var locale9 = new Locale();
