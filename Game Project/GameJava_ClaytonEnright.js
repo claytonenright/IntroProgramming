@@ -36,7 +36,6 @@ var hideBtnArray = [ // N  S  E  W
 function init() {
    dispMsg("Hello and welcome to Pork! The Ham-Based parody of Zork!\nCan you prepare the feast?!");
    checkLocation();
-   document.getElementById("baconpic").style.visibility = "hidden";
 }
       
    // Score Keeping      
@@ -49,7 +48,7 @@ function addScore(points) {
    //  Location Specific Functions   
 function checkLocation() {
    if (playerLocation === 9 && inventory.length === 4) {
-      document.getElementById("baconpic").style.visibility = "visible";
+      document.getElementById("gamemap").src = "Bacon.jpeg";
       locale9.desc = "Here you find a picnic table with a lovely table cloth...\nCongratulations! You win! Now dig in!";
       addScore(35);
    }
